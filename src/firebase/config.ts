@@ -1,4 +1,8 @@
-/*var firebaseConfig = {
+import firebase from 'firebase/app'
+import 'firebase/storage'
+import 'firebase/firestore'
+
+const firebaseConfig = {
   apiKey: "AIzaSyBkEdjuBZSMnXXz2ioUuqJDR0ANYGaTjg8",
   authDomain: "blazing-firegram.firebaseapp.com",
   databaseURL: "https://blazing-firegram.firebaseio.com",
@@ -6,9 +10,11 @@
   storageBucket: "blazing-firegram.appspot.com",
   messagingSenderId: "366196135247",
   appId: "1:366196135247:web:99330d7c06b968ccaca13a"
-};
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
-*/
+}
 
-export default {}
+firebase.initializeApp(firebaseConfig)
+
+const projectStorage = firebase.storage()
+const projectFireStore = firebase.firestore()
+
+export default { projectStorage, projectFireStore }
