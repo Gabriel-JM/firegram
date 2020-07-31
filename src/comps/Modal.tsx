@@ -1,4 +1,5 @@
 import React, { FC } from 'react'
+import { motion } from 'framer-motion'
 
 interface ModalProps {
   selectedImg: string
@@ -14,9 +15,16 @@ const Modal: FC<ModalProps> = ({ selectedImg, setSelectedImg }) => {
   }
 
   return (
-    <div className="backdrop" onClick={closeModal}>
-      <img src={selectedImg} alt="enlarged pic" />
-    </div>
+    <motion.div className="backdrop"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      onClick={closeModal}
+    >
+      <motion.img src={selectedImg} alt="enlarged pic"
+        initial={{ y: '-100%' }}
+        animate={{ y: 0 }}
+      />
+    </motion.div>
   )
 }
 
