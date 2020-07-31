@@ -2,13 +2,20 @@ import React, { FC } from 'react'
 
 interface ModalProps {
   selectedImg: string
-  alt?: string
+  setSelectedImg: Function
 }
 
-const Modal: FC<ModalProps> = ({ selectedImg, alt }) => {
+const Modal: FC<ModalProps> = ({ selectedImg, setSelectedImg }) => {
+
+  function closeModal(e: React.MouseEvent) {
+    if((e.target as HTMLElement).classList.contains('backdrop')) {
+      setSelectedImg(null)
+    }
+  }
+
   return (
-    <div className="backdrop">
-      <img src={selectedImg} alt={alt ? alt : "enlarged pic"} />
+    <div className="backdrop" onClick={closeModal}>
+      <img src={selectedImg} alt="enlarged pic" />
     </div>
   )
 }
