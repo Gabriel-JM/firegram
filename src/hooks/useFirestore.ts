@@ -2,20 +2,22 @@ import { useState, useEffect } from 'react'
 import { projectFireStore } from '../firebase/config'
 import { firestore } from 'firebase'
 
-type Collection = firestore.CollectionReference
+type DocumentData = firestore.DocumentData
 type FirestoreSnapshot = firestore.QuerySnapshot<firestore.DocumentData>
 
 const useFirestore = (collection: string) => {
-  const [docs, setDocs] = useState<Collection[]>([])
+  const [docs, setDocs] = useState<DocumentData[]>([])
 
   function extractDocsData(snap: FirestoreSnapshot) {
-    const documents: Array<firestore.DocumentData> = []
+    const documents: Array<DocumentData> = []
     snap.forEach(doc => {
       documents.push({
         id: doc.id,
         ...doc.data()
       })
     })
+
+    setDocs(documents)
   }
 
   useEffect(() => {
